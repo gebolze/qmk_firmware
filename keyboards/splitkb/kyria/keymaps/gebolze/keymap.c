@@ -39,6 +39,8 @@ enum layers {
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
 
 #define NAV_SPC  LT(_NAV, KC_SPC)
+#define SYM_ENT  LT(_SYM, KC_ENT)
+
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
@@ -56,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | xxxxxx |   Z  |   X  |   C  |   D  |   V  | xxxx | xxxx |  | xxxx | xxxx |   K  |   H  | ,  < | .  > | /  ? | xxxxxx |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      | NAV /|      |      |  |      |      |      |      |      |
+ *                        |      |      | NAV /|      |      |  |      | SYM /|      |      |      |
  *                        | xxxx | ESC  | Space| Tab  | xxxx |  | xxxx | Enter|Bksp  | Del  | xxxx |
  *                        `----------------------------------'  `----------------------------------'
  */
