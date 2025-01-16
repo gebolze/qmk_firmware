@@ -19,6 +19,7 @@ enum layers {
     _COLEMAK_DH = 0,
     _QWERTY,
     _NAV,
+    _MOUSE,
     _SYM,
     _FUNCTION,
     _ADJUST,
@@ -41,6 +42,7 @@ enum layers {
 #define NAV_SPC  LT(_NAV, KC_SPC)
 #define SYM_ENT  LT(_SYM, KC_ENT)
 #define FUN_DEL  LT(_FUNCTION, KC_DEL)
+#define MOU_TAB  LT(_MOUSE, KC_TAB)
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
@@ -65,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | xxxxxx |   Z  |   X  |   C  |   D  |   V  | xxxx | xxxx |  | xxxx | xxxx |   K  |   H  | ,  < | .  > | /  ? | xxxxxx |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      | NAV /|      |      |  |      | SYM /|      | FUN /|      |
+ *                        |      |      | NAV /|MOUSE/|      |  |      | SYM /|      | FUN /|      |
  *                        | xxxx | ESC  | Space| Tab  | xxxx |  | xxxx | Enter|Bksp  | Del  | xxxx |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -73,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,        KC_Q,         KC_W,            KC_F,            KC_P,    KC_B,                                        KC_J,         KC_L,         KC_U,         KC_Y,      KC_QUOT, XXXXXXX,
       XXXXXXX,LGUI_T(KC_A), LALT_T(KC_R),    LCTL_T(KC_S),    LSFT_T(KC_T),    KC_G,                                        KC_M, RSFT_T(KC_N), RCTL_T(KC_E), ALGR_T(KC_I), RWIN_T(KC_O), XXXXXXX,
       XXXXXXX,        KC_Z,         KC_X,            KC_C,            KC_D,    KC_V, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_K,         KC_H,      KC_COMM,       KC_DOT,      KC_SLSH, XXXXXXX,
-                                                  XXXXXXX,          KC_ESC, NAV_SPC,  KC_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,      FUN_DEL,      XXXXXXX
+                                                  XXXXXXX,          KC_ESC, NAV_SPC, MOU_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,      FUN_DEL,      XXXXXXX
     ),
 
 
@@ -98,26 +100,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 ADJUST , KC_LGUI, ALT_ENT, KC_SPC , _______,     SYM    , KC_SPC ,KC_RALT, KC_RGUI, KC_APP
     ),
 
+
  /*
- * Navigation Layer: Media, navigation
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * | xxxxxx |      |      |      |      |      |                              | Redo | Paste| Copy |  Cut | Undo | xxxxxx |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | xxxxxx |  GUI |  Alt | Ctrl | Shift|      |                              | Caps |  ←   |   ↓  |   ↑  |   →  | xxxxxx |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx | INS  | HOME | PgDn | PgUp | END  | xxxxxx |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | xxxx |      |      |      | xxxx |  | xxxx |      |      |      | xxxx |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
+  * Navigation Layer: Navigation
+  *
+  * ,-------------------------------------------.                              ,-------------------------------------------.
+  * | xxxxxx |      |      |      |      |      |                              | Redo | Paste| Copy |  Cut | Undo | xxxxxx |
+  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+  * | xxxxxx |  GUI |  Alt | Ctrl | Shift|      |                              | Caps |  ←   |   ↓  |   ↑  |   →  | xxxxxx |
+  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+  * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx | INS  | HOME | PgDn | PgUp | END  | xxxxxx |
+  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+  *                        | xxxx |      |      |      | xxxx |  | xxxx |      |      |      | xxxx |
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        `----------------------------------'  `----------------------------------'
+  */
     [_NAV] = LAYOUT(
       XXXXXXX, _______, _______, _______, _______, _______,                                       U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND, XXXXXXX,
       XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
       XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
                                  XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
     ),
+
+
+ /*
+  * Mouse Layer
+  *
+  * ,-------------------------------------------.                              ,-------------------------------------------.
+  * | xxxxxx |      |      |      |      |      |                              | Redo | Paste| Copy |  Cut | Undo | xxxxxx |
+  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+  * | xxxxxx | GUI  | Alt  | Ctrl | Shift|      |                              |      | MoCL | MoCD | MoCU | MCUR | xxxxxx |
+  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+  * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx |      | MWL  | MWD  | MWU  | MWR  | xxxxxx |
+  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+  *                        | xxxx |      |      |      | xxxx |  | xxxx | MBTN2| MBTN1| MBTN3| xxxx |
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        `----------------------------------'  `----------------------------------'
+  */
+    [_MOUSE] = LAYOUT(
+      XXXXXXX, _______, _______, _______, _______, _______,                                       U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND, XXXXXXX,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
+      XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+                                 XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN1, KC_BTN3, XXXXXXX
+    ),
+
 
 /*
  * Sym Layer: Numbers and symbols
@@ -235,6 +261,9 @@ bool oled_task_user(void) {
             case _COLEMAK_DH:
                 oled_write_P(PSTR("Colemak-DH\n"), false);
                 break;
+	    case _MOUSE:
+                oled_write_P(PSTR("Mouse\n"), false);
+		break;
             case _NAV:
                 oled_write_P(PSTR("Nav\n"), false);
                 break;
