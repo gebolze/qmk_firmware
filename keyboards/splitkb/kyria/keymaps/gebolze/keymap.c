@@ -40,7 +40,7 @@ enum layers {
 
 #define NAV_SPC  LT(_NAV, KC_SPC)
 #define SYM_ENT  LT(_SYM, KC_ENT)
-
+#define FUN_DEL  LT(_FUNCTION, KC_DEL)
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | xxxxxx |   Z  |   X  |   C  |   D  |   V  | xxxx | xxxx |  | xxxx | xxxx |   K  |   H  | ,  < | .  > | /  ? | xxxxxx |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      | NAV /|      |      |  |      | SYM /|      |      |      |
+ *                        |      |      | NAV /|      |      |  |      | SYM /|      | FUN /|      |
  *                        | xxxx | ESC  | Space| Tab  | xxxx |  | xxxx | Enter|Bksp  | Del  | xxxx |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,        KC_Q,         KC_W,            KC_F,            KC_P,    KC_B,                                        KC_J,         KC_L,         KC_U,         KC_Y,      KC_QUOT, XXXXXXX,
       XXXXXXX,LGUI_T(KC_A), LALT_T(KC_R),    LCTL_T(KC_S),    LSFT_T(KC_T),    KC_G,                                        KC_M, RSFT_T(KC_N), RCTL_T(KC_E), ALGR_T(KC_I), RWIN_T(KC_O), XXXXXXX,
       XXXXXXX,        KC_Z,         KC_X,            KC_C,            KC_D,    KC_V, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_K,         KC_H,      KC_COMM,       KC_DOT,      KC_SLSH, XXXXXXX,
-                                                  XXXXXXX,          KC_ESC, NAV_SPC,  KC_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,       KC_DEL,      XXXXXXX
+                                                  XXXXXXX,          KC_ESC, NAV_SPC,  KC_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,      FUN_DEL,      XXXXXXX
     ),
 
 
@@ -144,21 +144,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Function Layer: Function keys
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  F9  | F10  | F11  | F12  |      |                              |      |      |      |      |      |        |
+ * |        | F12  |  F7  |  F8  |  F9  | PSCR |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  F5  |  F6  |  F7  |  F8  |      |                              |      | Shift| Ctrl |  Alt |  GUI |        |
+ * |        | F11  |  F4  |  F5  |  F6  | SCRL |                              |      | Shift| Ctrl |  Alt |  GUI |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  F1  |  F2  |  F3  |  F4  |      |      |      |  |      |      |      |      |      |      |      |        |
+ * |        | F10  |  F1  |  F2  |  F3  | PAUS |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_FUNCTION] = LAYOUT(
-      _______,  KC_F9 ,  KC_F10,  KC_F11,  KC_F12, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______,                                     _______, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, _______,
-      _______,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      XXXXXXX,  KC_F12,  KC_F7 ,  KC_F8 ,  KC_F9 , KC_PSCR,                                     _______, _______, _______, _______, _______, XXXXXXX,
+      XXXXXXX,  KC_F11,  KC_F4 ,  KC_F5 ,  KC_F6 , KC_SCRL,                                     _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, XXXXXXX,
+      XXXXXXX,  KC_F10,  KC_F1 ,  KC_F2 ,  KC_F3 , KC_PAUS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX,
+                                 XXXXXXX,  KC_APP, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
     ),
 
 /*
