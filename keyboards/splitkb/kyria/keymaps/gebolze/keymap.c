@@ -66,29 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,        KC_Q,         KC_W,            KC_F,            KC_P,    KC_B,                                        KC_J,         KC_L,         KC_U,         KC_Y,      KC_QUOT, XXXXXXX,
       XXXXXXX,LGUI_T(KC_A), LALT_T(KC_R),    LCTL_T(KC_S),    LSFT_T(KC_T),    KC_G,                                        KC_M, RSFT_T(KC_N), RCTL_T(KC_E), ALGR_T(KC_I), RWIN_T(KC_O), XXXXXXX,
       XXXXXXX,        KC_Z,         KC_X,            KC_C,            KC_D,    KC_V, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_K,         KC_H,      KC_COMM,       KC_DOT,      KC_SLSH, XXXXXXX,
-                                                  XXXXXXX,          KC_ESC, NAV_SPC,  KC_TAB, XXXXXXX, XXXXXXX,  KC_ENT, KC_BSPC,       KC_DEL,      XXXXXXX
+                                                  XXXXXXX,          KC_ESC, NAV_SPC,  KC_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,       KC_DEL,      XXXXXXX
     ),
 
-/*
- * Navigation Layer: Media, navigation
- *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * | xxxxxx |      |      |      |      |      |                              |      |      |      |      |      | xxxxxx |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * | xxxxxx |  GUI |  Alt | Ctrl | Shift|      |                              |CAPTGL|  ←   |   ↓  |   ↑  |   →  | xxxxxx |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx | INS  | HOME | PgDn | PgUp | END  | xxxxxx |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | xxxx |      |      |      | xxxx |  | xxxx |      |      |      | xxxx |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
- */
-    [_NAV] = LAYOUT(
-      XXXXXXX, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, XXXXXXX,
-      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     CW_TOGG, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
-      XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
-                                 XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
-    ),
 
 /*
  * Base Layer: QWERTY
@@ -109,6 +89,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      CTL_ESC , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                         KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,CTL_QUOT,
      KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC, KC_CAPS,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
                                 ADJUST , KC_LGUI, ALT_ENT, KC_SPC , _______,     SYM    , KC_SPC ,KC_RALT, KC_RGUI, KC_APP
+    ),
+
+ /*
+ * Navigation Layer: Media, navigation
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * | xxxxxx |      |      |      |      |      |                              |      |      |      |      |      | xxxxxx |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * | xxxxxx |  GUI |  Alt | Ctrl | Shift|      |                              | Caps |  ←   |   ↓  |   ↑  |   →  | xxxxxx |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx | INS  | HOME | PgDn | PgUp | END  | xxxxxx |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        | xxxx |      |      |      | xxxx |  | xxxx |      |      |      | xxxx |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_NAV] = LAYOUT(
+      XXXXXXX, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, XXXXXXX,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
+      XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
+                                 XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
     ),
 
 /*
