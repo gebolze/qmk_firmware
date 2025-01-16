@@ -45,6 +45,13 @@ enum layers {
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
 
+
+#define U_RDO KC_AGIN /* redo */
+#define U_PST KC_PSTE /* paste */
+#define U_CPY KC_COPY /* copy */
+#define U_CUT KC_CUT  /* cut */
+#define U_UND KC_UNDO /* undo */
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -95,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Navigation Layer: Media, navigation
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | xxxxxx |      |      |      |      |      |                              |      |      |      |      |      | xxxxxx |
+ * | xxxxxx |      |      |      |      |      |                              | Redo | Paste| Copy |  Cut | Undo | xxxxxx |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * | xxxxxx |  GUI |  Alt | Ctrl | Shift|      |                              | Caps |  ←   |   ↓  |   ↑  |   →  | xxxxxx |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -106,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NAV] = LAYOUT(
-      XXXXXXX, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, XXXXXXX,
+      XXXXXXX, _______, _______, _______, _______, _______,                                       U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND, XXXXXXX,
       XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,                                     KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
       XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
                                  XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
