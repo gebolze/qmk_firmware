@@ -20,6 +20,7 @@ enum layers {
     _QWERTY,
     _NAV,
     _MOUSE,
+    _MEDIA,
     _SYM,
     _FUNCTION,
     _ADJUST,
@@ -43,6 +44,8 @@ enum layers {
 #define SYM_ENT  LT(_SYM, KC_ENT)
 #define FUN_DEL  LT(_FUNCTION, KC_DEL)
 #define MOU_TAB  LT(_MOUSE, KC_TAB)
+#define MED_ESC  LT(_MEDIA, KC_ESC)
+
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
@@ -67,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | xxxxxx |   Z  |   X  |   C  |   D  |   V  | xxxx | xxxx |  | xxxx | xxxx |   K  |   H  | ,  < | .  > | /  ? | xxxxxx |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      | NAV /|MOUSE/|      |  |      | SYM /|      | FUN /|      |
+ *                        |      | MED /| NAV /|MOUSE/|      |  |      | SYM /|      | FUN /|      |
  *                        | xxxx | ESC  | Space| Tab  | xxxx |  | xxxx | Enter|Bksp  | Del  | xxxx |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -75,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,        KC_Q,         KC_W,            KC_F,            KC_P,    KC_B,                                        KC_J,         KC_L,         KC_U,         KC_Y,      KC_QUOT, XXXXXXX,
       XXXXXXX,LGUI_T(KC_A), LALT_T(KC_R),    LCTL_T(KC_S),    LSFT_T(KC_T),    KC_G,                                        KC_M, RSFT_T(KC_N), RCTL_T(KC_E), ALGR_T(KC_I), RWIN_T(KC_O), XXXXXXX,
       XXXXXXX,        KC_Z,         KC_X,            KC_C,            KC_D,    KC_V, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_K,         KC_H,      KC_COMM,       KC_DOT,      KC_SLSH, XXXXXXX,
-                                                  XXXXXXX,          KC_ESC, NAV_SPC, MOU_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,      FUN_DEL,      XXXXXXX
+                                                  XXXXXXX,         MED_ESC, NAV_SPC, MOU_TAB, XXXXXXX, XXXXXXX, SYM_ENT, KC_BSPC,      FUN_DEL,      XXXXXXX
     ),
 
 
@@ -144,6 +147,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN1, KC_BTN3, XXXXXXX
     ),
 
+ /*
+  * Media Layer
+  *
+  * ,-------------------------------------------.                              ,-------------------------------------------.
+  * | xxxxxx |      |      |      |      |      |                              | RGB T| RGB M| RGB H| RGB S| RGB V| xxxxxx |
+  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+  * | xxxxxx |      |      |      |      |      |                              |      | prev | vol d| vol u| next | xxxxxx |
+  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+  * | xxxxxx |      |      |      |      |      | xxxx | xxxx |  | xxxx | xxxx |      |      |      |      |      | xxxxxx |
+  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        | xxxx |      |      |      | xxxx |  | xxxx | stop | play | mute | xxxx |
+  *                        `----------------------------------'  `----------------------------------'
+  */
+    [_MEDIA] = LAYOUT(
+      XXXXXXX, _______, _______, _______, _______, _______,                                     RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,
+      XXXXXXX, _______, _______, _______, _______, _______,                                     _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,
+      XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX,
+                                 XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, KC_MSTP, KC_MPLY, KC_MUTE, XXXXXXX
+    ),
 
 /*
  * Sym Layer: Numbers and symbols
@@ -263,6 +286,9 @@ bool oled_task_user(void) {
                 break;
 	    case _MOUSE:
                 oled_write_P(PSTR("Mouse\n"), false);
+		break;
+            case _MEDIA:
+                oled_write_P(PSTR("Media\n"), false);
 		break;
             case _NAV:
                 oled_write_P(PSTR("Nav\n"), false);
